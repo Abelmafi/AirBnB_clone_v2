@@ -22,13 +22,14 @@ class FileStorage:
         FileStorage.__objects.update({obj.to_dict()['__class__'] +
                                       '.' + obj.id: obj})
 
-    def delete(self, obj):
+    def delete(self, obj=None):
         """Deletes an existing object"""
-        temp = obj.to_dict()['__class__'] + '.' + obj.id
-        for i in FileStorage.__objects:
-            if temp == i:
-                del FileStorage.__objects[temp]
-                break
+        if obj:
+            temp = obj.to_dict()['__class__'] + '.' + obj.id
+            for i in FileStorage.__objects:
+                if temp == i:
+                    del FileStorage.__objects[temp]
+                    break
 
     def save(self):
         """Saves storage dictionary to file"""
