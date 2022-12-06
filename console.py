@@ -127,21 +127,20 @@ class HBNBCommand(cmd.Cmd):
         elif c_name not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
-        new_instance = HBNBCommand.classes[c_name]()
-        if (args):
-            for i in args:
-                attr = i.split('=')
-                att_name = attr[0]
-                att_val = attr[1]
-                att_val = att_val.replace('\"', '')
-                att_val = att_val.replace('_', ' ')
+        kwargs = {}
+        
+        for i in args:
+            att_name, att_val = i.split('=')
+            att_val = att_val.replace('\"', '')
+            att_val = att_val.replace('_', ' ')
+            att_val = att_val.strip('"\'')
 
-                # type cast as necessary
-                if att_name in HBNBCommand.types:
-                    att_val = HBNBCommand.types[att_name](att_val)
+            # type cast as necessary
+            if att_name in HBNBCommand.types:
+                att_val = HBNBCommand.types[att_name](att_val)
+            kwargs[att_name] = att_val
 
-                # update dictionary with name, value pair
-                new_instance.__dict__.update({att_name: att_val})
+        new_instance.__dict__.update({att_name: att_val})
 
         storage.save()
         print(new_instance.id)
@@ -225,6 +224,9 @@ class HBNBCommand(cmd.Cmd):
         if args:
             args = args.split(' ')[0]  # remove possible trailing args
             if args not in HBNBCommand.classes:
+                print("** class doesn't exist **")
+                return
+                return
                 print("** class doesn't exist **")
                 return
             for k, v in storage._FileStorage__objects.items():
@@ -341,6 +343,3 @@ class HBNBCommand(cmd.Cmd):
         print("Updates an object with new information")
         print("Usage: update <className> <id> <attName> <attVal>\n")
 
-
-if __name__ == "__main__":
-    HBNBCommand().cmdloop()
