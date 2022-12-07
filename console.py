@@ -287,5 +287,5 @@ class HBNBCommand(cmd.Cmd):
         except ValueError:
             return False
 
-if name == 'main':
+if __name__ == '__main__':
     HBNBCommand().cmdloop()
