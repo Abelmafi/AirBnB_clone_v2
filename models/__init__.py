@@ -7,10 +7,10 @@ from models.state import State
 from models.review import Review
 from models.user import User
 from models.place import Place
-from models.amentity import Amentity
+from models.amenity import Amenity
 
 
-if environ(HBNB_TYPE_STORAGE) == 'db':
+if environ['HBNB_TYPE_STORAGE'] == 'db':
     from models.engine.db_storage import DBStorage
     storage = DBStorage()
     storage.reload()
