@@ -14,8 +14,7 @@ from shlex import split
 
 
 class HBNBCommand(cmd.Cmd):
-    """this class is entry point of the command interpreter
-    """
+    """this class is entry point of the command interpreter"""
     prompt = "(hbnb) "
     all_classes = {"BaseModel": BaseModel, "User": User, "State": State,
                    "City": City, "Amenity": Amenity,
@@ -42,11 +41,11 @@ class HBNBCommand(cmd.Cmd):
         try:
             if not line:
                 raise SyntaxError()
-            my_list = line.split(" ")  # split cmd line into list
+            my_list = line.split(" ")
 
-            if my_list:  # if list not empty
-                cls_name = my_list[0]  # extract class name
-            else:  # class name missing
+            if my_list:
+                cls_name = my_list[0]
+            else:
                 raise SyntaxError()
 
             kwargs = {}
@@ -62,9 +61,9 @@ class HBNBCommand(cmd.Cmd):
                     kwargs[k] = v.strip('"\'')
 
             obj = self.all_classes[cls_name](**kwargs)
-            storage.new(obj)  # store new object
-            obj.save()  # save storage to file
-            print(obj.id)  # print id of created object class
+            storage.new(obj)
+            obj.save()
+            print(obj.id)
 
         except SyntaxError:
             print(" class name missing ")
