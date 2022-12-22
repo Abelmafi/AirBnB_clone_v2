@@ -1,11 +1,8 @@
 #!/usr/bin/env bash
 # inital configration
-if [ $? -ne 0 ]; then
-	sudo apt-get -y update
-	sudo apt-get install -y install nginx
-else
-	echo "Already installed"
-fi
+
+sudo apt-get -y update
+sudo apt-get -y install nginx
 
 # configure file system
 sudo service nginx start
