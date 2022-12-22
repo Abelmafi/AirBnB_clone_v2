@@ -15,7 +15,7 @@ def do_clean(number=0):
     _list = _list.split('\n')
     n = int(number)
     if n in (0, 1):
-        n = 1;
+        n = 1
     for i in _list[n:]:
         local('rm versions/' + i)
 
