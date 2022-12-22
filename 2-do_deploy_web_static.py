@@ -34,10 +34,10 @@ def do_deploy(archive_path):
 
         # remove archive
         run("sudo rm {}".format(tmp_path))
-        
+
         # move contents in to host web_static
         run('sudo rsync -a {}web_static/* {}'.format(new_path, new_path))
-        run ('sudo rm -rf {}web_static/*'.format(new_path))
+        run('sudo rm -rf {}web_static/*'.format(new_path))
         # remove extranous web_static dir
         run("sudo rm -rf {}web_static".format(new_path))
 
@@ -48,5 +48,6 @@ def do_deploy(archive_path):
         run("sudo ln -s {} /data/web_static/current".format(new_path))
         print("New version deployed!")
         return True
+
     except:
         return False
