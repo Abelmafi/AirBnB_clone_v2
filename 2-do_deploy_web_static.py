@@ -6,8 +6,9 @@ import shlex
 import os
 
 
-env.hosts = ['35.231.33.237', '34.74.155.163']
+env.hosts = ['54.236.41.101', '34.224.6.181']
 env.user = "ubuntu"
+env.key_filename = '~/.ssh/id_rsa'
 
 
 def do_deploy(archive_path):
@@ -19,21 +20,21 @@ def do_deploy(archive_path):
         name = shlex.split(name)
         name = name[-1]
 
-        wname = name.replace('.', ' ')
-        wname = shlex.split(wname)
-        wname = wname[0]
-
-        releases_path = "/data/web_static/releases/{}/".format(wname)
-        tmp_path = "/tmp/{}".format(name)
+        s_name = name.replace('.', ' ')
+        s_name = shlex.split(s_name)
+        s_name = s_name[0]
 
         put(archive_path, "/tmp/")
-        run("mkdir -p {}".format(releases_path))
-        run("tar -xzf {} -C {}".format(tmp_path, releases_path))
-        run("rm {}".format(tmp_path))
-        run("mv {}web_static/* {}".format(releases_path, releases_path))
-        run("rm -rf {}web_static".format(releases_path))
-        run("rm -rf /data/web_static/current")
-        run("ln -s {} /data/web_static/current".format(releases_path))
+        new_path = "/data/web_static/releases/{}/".format(s_name)
+        tmp_path = "/tmp/{}".format(name)
+
+        run("sudo mkdir -p {}".format(new_path))
+        run("sudo tar -xzf {} -C {}".format(tmp_path, new_path))
+        run("sudo rm {}".format(tmp_path))
+        run("sudo mv {}web_static/* {}".format(new_path, new_path))
+        run("sudo rm -rf {}web_static".format(new_path))
+        run("sudo rm -rf /data/web_static/current")
+        run("sudo ln -s {} /data/web_static/current".format(new_path))
         print("New version deployed!")
         return True
     except:
