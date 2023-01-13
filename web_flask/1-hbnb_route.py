@@ -1,20 +1,19 @@
 #!/usr/bin/python3
 """The followiong scripts starts a Flask web application:"""
 
-
 from flask import Flask
 app = Flask(__name__)
 
 
 @app.route('/')
 def hello_hbnb():
-    """ return  “Hello HBNB!” string when route quired"""
+    """Return  “Hello HBNB!” string when route quired"""
     return "Hello HBNB!"
 
 
 @app.route('/hbnb')
 def hello_hbnb2():
-    """ return string when quired."""
+    """Return a "HBNB" string when quired."""
     return "HBNB"
 
 
