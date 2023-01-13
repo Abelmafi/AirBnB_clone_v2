@@ -17,8 +17,8 @@ def hello_hbnb2():
     return "HBNB"
 
 
-@app.route('c/<text>')
-def text(text):
+@app.route('/c/<text>')
+def C_is_fun(text):
     """Returns string “C ” followed by the value of the text variable
     when quired"""
     return 'C %' % text.replace('_', ' ')
