@@ -24,7 +24,7 @@ def C_is_fun(text):
     return 'C ' + text.replace('_', ' ')
 
 
-@app.route('/python/(<text>)')
+@app.route('/python/<text>')
 def python_is_cool(text='is cool'):
     """Return a string “Python ”, followed by the value of the text variable
     when quired"""
