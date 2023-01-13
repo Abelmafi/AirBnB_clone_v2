@@ -21,7 +21,7 @@ def hello_hbnb2():
 def C_is_fun(text):
     """Returns string “C ” followed by the value of the text variable
     when quired"""
-    return 'C %' % text.replace('_', ' ')
+    return 'C ' + text.replace('_', ' ')
 
 
 if __name__ == '__main__':
