@@ -35,8 +35,7 @@ def python_is_cool(text='is cool'):
 @app.route('/number/<int:n>')
 def is_it_number(n=None):
     """Return string  “n is a number” only if n is an integer"""
-    return f'{n} is a number'
-
+    return str(n) + ' is a number'
 
 if __name__ == '__main__':
     app.url_map.strict_slashes = False
