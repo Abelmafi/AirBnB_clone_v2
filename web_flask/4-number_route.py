@@ -32,11 +32,10 @@ def python_is_cool(text='is cool'):
     return 'Python ' + text.replace('_', ' ')
 
 
-@app.route('/number/<n>')
+@app.route('/number/<int:n>')
 def is_it_number(n):
     """Return string  “n is a number” only if n is an integer"""
-    if type(n) == int:
-        return f'{n} is a number'
+    return f'{n} is a number'
 
 
 if __name__ == '__main__':
