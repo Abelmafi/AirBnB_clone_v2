@@ -4,16 +4,17 @@
 
 from models import storage
 from models.state import State
+from models.amenity import Amenity
 from flask import Flask, render_template
-app = Flask(name)
+app = Flask(__name__)
 
 
-@app.route('/states')
-@app.route('/states/<id>')
-def state_filter(id=None):
+@app.route('/hbnb_filters')
+def hbnb_filters():
     """Render template with states"""
     states = storage.all(State)
-    return render_template('9-states.html', states=states, id=id)
+    amenities = storage.all(Amenity)
+    return render_template('10-hbnb_filters.html', states=states, amenities=amenities)
 
 
 @app.teardown_appcontext
@@ -22,6 +23,6 @@ def app_teardown(arg=None):
     storage.close()
 
 
-if name == 'main':
+if __name__ == '__main__':
     app.url_map.strict_slashes = False
     app.run(host='0.0.0.0', port=5000)
